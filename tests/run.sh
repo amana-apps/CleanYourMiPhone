@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Offline tests using tests/fake-adb. Run with: bash tests/run.sh
+# shellcheck disable=SC2034  # "out" is read inside the eval in t()
 set -u
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 TOOL="$HERE/../cleanyourmiphone.sh"
@@ -20,10 +21,9 @@ t "scan flags sideloaded apps" 'grep -q com.sideloaded.app <<<"$out"'
 t "scan uninstalls nothing" '! grep -q "pm uninstall" "$FAKE_ADB_LOG"'
 
 : >"$FAKE_ADB_LOG"
-cp "$HERE/../lists/recommended.txt" "$TMP/rec.bak"
-echo 'com.miui.home|protected test' >>"$HERE/../lists/recommended.txt"
-out="$(bash "$TOOL" clean)"
-cp "$TMP/rec.bak" "$HERE/../lists/recommended.txt"
+cp -r "$HERE/../lists" "$TMP/lists"
+echo 'com.miui.home|protected test' >>"$TMP/lists/recommended.txt"
+out="$(CYMP_LIST_DIR="$TMP/lists" bash "$TOOL" clean)"
 t "protected package is refused" 'grep -q "Skipping protected package: com.miui.home" <<<"$out"'
 
 mkdir -p "$TMP/backups"
@@ -32,6 +32,9 @@ printf '2026-01-01 system com.miui.analytics\n2026-01-01 user com.mi.global.shop
 out="$(bash "$TOOL" restore --all)"
 t "restore --all restores system packages" 'grep -q "restored com.miui.analytics" <<<"$out"'
 t "restore --all reports user apps" 'grep -q "cannot restore com.mi.global.shop" <<<"$out"'
+
+out="$(bash "$TOOL" version)"
+t "version prints" 'grep -q "CleanYourMiPhone" <<<"$out"'
 
 echo "passed $pass, failed $fail"
 [ "$fail" -eq 0 ]

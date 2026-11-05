@@ -3,8 +3,9 @@
 # No root needed. Nothing changes on the phone without --apply and a confirmation.
 set -u
 
+VERSION="0.1.0"
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LISTS="$ROOT/lists"
+LISTS="${CYMP_LIST_DIR:-$ROOT/lists}"
 BACKUPS="${CYMP_BACKUP_DIR:-$ROOT/backups}"
 REMOVED_LOG="$BACKUPS/removed.log"
 ADB="${ADB:-adb}"
@@ -26,6 +27,7 @@ Usage: ./cleanyourmiphone.sh <command>
   restore <package>...      Bring back removed packages
   restore --all             Bring back everything this tool removed
   speed                     Show RAM, storage, animation and memory use
+  version                   Show the version
 
 --optional asks about each package in lists/optional.txt.
 TXT
@@ -104,7 +106,8 @@ cmd_scan() {
 
 backup_packages() {
   mkdir -p "$BACKUPS"
-  local file="$BACKUPS/packages-$(date +%Y%m%d-%H%M%S).txt"
+  local file
+  file="$BACKUPS/packages-$(date +%Y%m%d-%H%M%S).txt"
   sh_ pm list packages -f -u | sort >"$file"
   [ -s "$file" ] || die "Could not save the package backup, so nothing was removed."
   say "Package list saved to $file"
@@ -197,7 +200,7 @@ cmd_clean() {
 cmd_restore() {
   [ "$#" -gt 0 ] || die "Name a package, or use --all."
   require_device
-  local names=() pkg result
+  local names=() pkg result kind
   if [ "$1" = "--all" ]; then
     [ -f "$REMOVED_LOG" ] || die "No removal log found at $REMOVED_LOG"
     while read -r _ kind pkg; do
@@ -210,7 +213,8 @@ cmd_restore() {
   else
     names=("$@")
   fi
-  for pkg in ${names[@]+"${names[@]}"}; do
+  [ "${#names[@]}" -gt 0 ] || return 0
+  for pkg in "${names[@]}"; do
     result="$(sh_ cmd package install-existing "$pkg")"
     case "$result" in
       *"installed for user"*) say "  restored $pkg" ;;
@@ -251,6 +255,7 @@ main() {
     restore) cmd_restore "$@" ;;
     speed)   cmd_speed ;;
     ""|-h|--help|help) usage ;;
+    -v|--version|version) say "CleanYourMiPhone $VERSION" ;;
     *) usage; exit 1 ;;
   esac
 }

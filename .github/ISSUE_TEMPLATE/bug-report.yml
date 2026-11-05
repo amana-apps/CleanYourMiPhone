@@ -1,0 +1,40 @@
+name: Bug report
+description: Something in the tool went wrong
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please don't include your serial number or backup files."
+  - type: input
+    id: version
+    attributes:
+      label: Tool version
+      description: Run ./cleanyourmiphone.sh version
+    validations:
+      required: true
+  - type: input
+    id: phone
+    attributes:
+      label: Phone model and system version
+    validations:
+      required: true
+  - type: input
+    id: computer
+    attributes:
+      label: Computer operating system
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+    validations:
+      required: true

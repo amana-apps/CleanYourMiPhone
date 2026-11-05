@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lint shell scripts
+        run: shellcheck --severity=warning cleanyourmiphone.sh tests/run.sh tests/fake-adb
+      - name: Run offline tests
+        run: bash tests/run.sh

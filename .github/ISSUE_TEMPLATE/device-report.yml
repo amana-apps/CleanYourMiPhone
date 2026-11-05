@@ -1,0 +1,36 @@
+name: Device report
+description: Share how CleanYourMiPhone worked on your phone
+title: "[Device] "
+labels: ["device report"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please don't include your serial number or backup files."
+  - type: input
+    id: model
+    attributes:
+      label: Phone model
+      placeholder: Redmi 15 (25062RN2DA)
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: HyperOS or MIUI version, and Android version
+      placeholder: HyperOS 3, Android 16
+    validations:
+      required: true
+  - type: textarea
+    id: removed
+    attributes:
+      label: What did you remove?
+      description: Recommended list, optional list, or specific packages.
+    validations:
+      required: true
+  - type: textarea
+    id: result
+    attributes:
+      label: What happened?
+      description: After a reboot, did calls, SMS, mobile data, fingerprint and camera work?
+    validations:
+      required: true
