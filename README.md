@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="https://github.com/amana-apps/CleanYourMiPhone/actions/workflows/ci.yml"><img src="https://github.com/amana-apps/CleanYourMiPhone/actions/workflows/ci.yml/badge.svg" alt="CI status"></a>
-  <a href="https://github.com/amana-apps/CleanYourMiPhone/releases"><img src="https://img.shields.io/github/v/release/amana-apps/CleanYourMiPhone?include_prereleases" alt="Latest release"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/amana-apps/CleanYourMiPhone" alt="MIT license"></a>
 </p>
 
