@@ -1,0 +1,34 @@
+# Protected: the script refuses to remove these, even from a custom list.
+# Removing some of them can cause boot loops or lock you out of the phone.
+android
+com.android.systemui
+com.android.settings
+com.android.phone
+com.android.updater
+com.android.vending
+com.android.thememanager
+com.android.providers.settings
+com.android.providers.telephony
+com.android.providers.contacts
+com.android.providers.media
+com.google.android.gms
+com.google.android.gsf
+com.google.android.webview
+com.google.android.adservices.api
+com.google.android.permissioncontroller
+com.google.android.packageinstaller
+com.lbe.security.miui
+com.miui.core
+com.miui.daemon
+com.miui.guardprovider
+com.miui.home
+com.miui.powerkeeper
+com.miui.rom
+com.miui.securityadd
+com.miui.securitycenter
+com.miui.securitycore
+com.miui.system
+com.xiaomi.account
+com.xiaomi.finddevice
+com.xiaomi.xmsf
+miui.systemui.plugin

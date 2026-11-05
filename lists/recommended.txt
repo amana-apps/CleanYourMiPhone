@@ -1,0 +1,18 @@
+# Recommended: ads, analytics and promo packages. Low risk on the tested device.
+# Format: package|description
+com.miui.msa.global|Xiaomi system ad service (MSA)
+com.miui.analytics|Xiaomi analytics
+com.miui.misightservice|Xiaomi usage and diagnostics collection
+com.miui.android.fashiongallery|Lock screen wallpaper carousel with promoted content
+com.mi.globalminusscreen|App Vault swipe-left feed
+com.mi.globalbrowser|Mi Browser, shows ads (set another default browser first)
+com.mi.global.shop|Xiaomi store
+com.xiaomi.glgm|Xiaomi game center
+com.miui.yellowpage|Xiaomi caller ID and business directory
+com.miui.bugreport|Feedback app
+com.miui.miservice|Services & Feedback app
+com.xiaomi.barrage|Floating notifications, has notification access
+com.facebook.appmanager|Preinstalled Facebook app manager
+com.facebook.services|Preinstalled Facebook services
+com.facebook.system|Preinstalled Facebook installer
+com.microsoftsdk.crossdeviceservicebroker|Microsoft Link to Windows helper

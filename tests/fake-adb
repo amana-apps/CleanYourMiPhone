@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Stand-in for adb, so tests never touch a real phone.
+log="${FAKE_ADB_LOG:?}"
+case "$1" in
+  get-state) echo device; exit 0 ;;
+  devices) printf 'List of devices attached\nTEST\tdevice\n'; exit 0 ;;
+esac
+shift
+echo "$*" >>"$log"
+case "$*" in
+  "getprop ro.product.manufacturer") echo Xiaomi ;;
+  "getprop "*) echo test ;;
+  "pm list packages -3 -i --user 0") echo "package:com.sideloaded.app  installer=null" ;;
+  "pm list packages -3 --user 0") echo "package:com.mi.global.shop" ;;
+  "pm list packages --user 0") printf 'package:com.miui.analytics\npackage:com.mi.global.shop\npackage:com.miui.home\npackage:com.miui.player\n' ;;
+  "pm list packages -f -u") echo "package:/system/a.apk=com.miui.analytics" ;;
+  "pm uninstall --user 0 "*) echo Success ;;
+  "cmd package install-existing "*) echo "Package ${*: -1} installed for user: 0" ;;
+esac

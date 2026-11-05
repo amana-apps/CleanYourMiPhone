@@ -1,0 +1,17 @@
+# Optional: safe to remove for many people, but you may use them.
+# The script asks about each one. Format: package|description
+com.xiaomi.mipicks|GetApps store; shows ads, but updates some Xiaomi apps
+com.xiaomi.discover|Xiaomi app updater; Xiaomi apps may stop updating
+com.xiaomi.midrop|ShareMe file sharing
+com.mi.android.globalFileexplorer|Xiaomi file manager (install another one first)
+cn.wps.xiaomi.abroad.lite|WPS document viewer
+com.miui.player|Xiaomi music player
+com.miui.videoplayer|Mi Video
+com.miui.cleaner|Xiaomi cleaner, shows ads
+com.miui.weather2|Xiaomi weather
+com.xiaomi.smarthome|Xiaomi Home smart device app
+com.duokan.phone.remotecontroller|Mi Remote (IR blaster control)
+com.google.android.apps.tachyon|Google Meet
+com.google.android.apps.subscriptions.red|Google One
+com.google.android.apps.youtube.music|YouTube Music
+com.google.android.apps.bard|Gemini
