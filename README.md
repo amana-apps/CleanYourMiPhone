@@ -19,7 +19,7 @@ or an unlocked bootloader.
 
 ## Features
 
-| | |
+| Feature | What it means |
 |---|---|
 | **Preview first** | Nothing changes without `--apply` and a confirmation |
 | **Backup** | Saves your package list before removing anything |
